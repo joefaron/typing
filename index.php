@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Typing Speed Test - Free Online Typing Test & WPM Calculator</title>
+    <meta name="title" content="Typing Speed Test - Free Online Typing Test & WPM Calculator">
+    <meta name="description" content="Test your typing speed and accuracy with our free online typing test. Calculate your WPM (words per minute), track your progress across 5 difficulty levels, and improve your typing skills. No registration required.">
+    <meta name="keywords" content="typing test, typing speed test, WPM test, words per minute, typing accuracy, typing practice, free typing test, online typing test, typing skills, keyboard test">
+    <meta name="author" content="KYD Labs">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://typing.kyd.net/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://typing.kyd.net/">
+    <meta property="og:title" content="Typing Speed Test - Free Online Typing Test & WPM Calculator">
+    <meta property="og:description" content="Test your typing speed and accuracy with our free online typing test. Calculate your WPM, track your progress, and improve your typing skills.">
+    <meta property="og:image" content="https://typing.kyd.net/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Typing Speed Test - Free Online Typing Practice">
+    <meta property="og:site_name" content="Typing Speed Test">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://typing.kyd.net/">
+    <meta name="twitter:title" content="Typing Speed Test - Free Online Typing Test & WPM Calculator">
+    <meta name="twitter:description" content="Test your typing speed and accuracy with our free online typing test. Calculate your WPM, track your progress, and improve your typing skills.">
+    <meta name="twitter:image" content="https://typing.kyd.net/og-image.jpg">
+    <meta name="twitter:image:alt" content="Typing Speed Test - Free Online Typing Practice">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#0d1117">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Typing Test">
+    <meta name="application-name" content="Typing Speed Test">
+    <meta name="msapplication-TileColor" content="#0d1117">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Typing Speed Test",
+        "description": "Free online typing speed test to measure your WPM (words per minute) and typing accuracy. Practice typing with 5 difficulty levels and track your progress.",
+        "url": "https://typing.kyd.net/",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "1000"
+        },
+        "featureList": [
+            "Real-time WPM calculation",
+            "Accuracy tracking",
+            "5 difficulty levels",
+            "Progress history",
+            "No registration required",
+            "Free to use"
+        ],
+        "screenshot": "https://typing.kyd.net/og-image.jpg",
+        "softwareVersion": "45",
+        "author": {
+            "@type": "Organization",
+            "name": "KYD Labs",
+            "url": "https://labs.kyd.net"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "KYD Labs",
+            "url": "https://labs.kyd.net"
+        }
+    }
+    </script>
+    
+    <link rel="stylesheet" href="index45.css?t=<?php echo time()?>">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://beta.fishwrangler.com/_ai/joe-helper-v1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.4.2/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header" role="banner">
+            <a href="https://typing.kyd.net" class="header-logo" aria-label="Typing Speed Test - Home">
+                <i data-lucide="keyboard" aria-hidden="true"></i>
+                <h1>Typing Speed Test</h1>
+            </a>
+            <div class="stats">
+                <div class="stat">
+                    <span class="label">WPM</span>
+                    <span id="wpm" class="value">0</span>
+                </div>
+                <div class="stat">
+                    <span class="label">Accuracy</span>
+                    <span id="accuracy" class="value">100%</span>
+                </div>
+                <div class="stat">
+                    <span class="label">Time</span>
+                    <span id="timer" class="value">0s</span>
+                </div>
+            </div>
+        </header>
+
+        <main role="main">
+            <section class="text-display" id="textDisplay" aria-label="Text to type"></section>
+
+            <textarea 
+                id="inputArea" 
+                placeholder="Start typing here..."
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+                aria-label="Typing input area"
+            ></textarea>
+
+            <nav class="controls" aria-label="Typing test controls">
+                <button id="selectLevelBtn" class="btn btn-secondary" aria-label="Select difficulty level">
+                    <i data-lucide="list" aria-hidden="true"></i>
+                    <span>Select Level</span>
+                </button>
+                <button id="resetBtn" class="btn" aria-label="Reset typing test">
+                    <i data-lucide="refresh-cw" aria-hidden="true"></i>
+                    <span>Reset</span>
+                </button>
+                <button id="shareBtn" class="btn btn-secondary" aria-label="Share your typing results">
+                    <i data-lucide="share-2" aria-hidden="true"></i>
+                    <span>Share Results</span>
+                </button>
+                <button id="clearStatsBtn" class="btn btn-secondary" aria-label="Clear all statistics">
+                    <i data-lucide="trash-2" aria-hidden="true"></i>
+                    <span>Clear Stats</span>
+                </button>
+            </nav>
+
+            <section class="history" aria-labelledby="history-heading">
+                <div class="history-header">
+                    <h2 id="history-heading">
+                        <i data-lucide="trophy" aria-hidden="true"></i>
+                        <span>Your Best Results</span>
+                    </h2>
+                    <button id="shareHistoryBtn" class="btn btn-secondary btn-small" aria-label="Share your typing history">
+                        <i data-lucide="share-2" aria-hidden="true"></i>
+                        <span>Share</span>
+                    </button>
+                </div>
+                <div class="history-tips">
+                    <p>Complete a typing test to see your results here. Your top 5 scores are saved automatically.</p>
+                </div>
+                <div id="historyList" role="list" aria-label="Top 5 typing test results"></div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Level Selection Modal -->
+    <div id="levelModal" class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">
+                    <i data-lucide="layers" aria-hidden="true"></i>
+                    <span>Select Level</span>
+                </h2>
+                <button id="closeModalBtn" class="modal-close" aria-label="Close level selection modal">
+                    <i data-lucide="x" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div id="levelList" class="level-list" role="listbox" aria-label="Available difficulty levels"></div>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div id="shareModal" class="modal" role="dialog" aria-labelledby="share-modal-title" aria-modal="true">
+        <div class="modal-content modal-content-small">
+            <div class="modal-header">
+                <h2 id="share-modal-title">
+                    <i data-lucide="share-2" aria-hidden="true"></i>
+                    <span>Share Results</span>
+                </h2>
+                <button id="closeShareModalBtn" class="modal-close" aria-label="Close share modal">
+                    <i data-lucide="x" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="share-content">
+                <div id="shareText" class="share-text" aria-live="polite"></div>
+                <div id="qrCodeContainer" class="qr-code-container"></div>
+                <nav class="share-buttons" aria-label="Share options">
+                    <button class="share-btn share-btn-twitter" data-platform="twitter" aria-label="Share on X (Twitter)">
+                        <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                        <span>X (Twitter)</span>
+                    </button>
+                    <button class="share-btn share-btn-facebook" data-platform="facebook" aria-label="Share on Facebook">
+                        <i data-lucide="facebook" aria-hidden="true"></i>
+                        <span>Facebook</span>
+                    </button>
+                    <button class="share-btn share-btn-instagram" data-platform="instagram" aria-label="Share on Instagram">
+                        <i data-lucide="instagram" aria-hidden="true"></i>
+                        <span>Instagram</span>
+                    </button>
+                    <button class="share-btn share-btn-linkedin" data-platform="linkedin" aria-label="Share on LinkedIn">
+                        <i data-lucide="linkedin" aria-hidden="true"></i>
+                        <span>LinkedIn</span>
+                    </button>
+                    <button class="share-btn share-btn-copy" data-platform="copy" aria-label="Copy link to clipboard">
+                        <i data-lucide="copy" aria-hidden="true"></i>
+                        <span>Copy Link</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer" role="contentinfo">
+        <a href="https://labs.kyd.net" class="footer-link" aria-label="Visit KYD Labs">
+            <i data-lucide="flask-conical" aria-hidden="true"></i>
+            <span>labs.kyd.net</span>
+        </a>
+        <a href="https://github.com/joefaron/typing" class="footer-link" aria-label="View on GitHub" target="_blank" rel="noopener noreferrer">
+            <i data-lucide="github" aria-hidden="true"></i>
+            <span>GitHub</span>
+        </a>
+    </footer>
+
+    <script src="index45.js?t=<?php echo time()?>"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
+
