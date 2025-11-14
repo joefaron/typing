@@ -117,6 +117,7 @@ If you're interested in AI-assisted development, this project serves as a real-w
 **joefaron**
 
 - GitHub: [@joefaron](https://github.com/joefaron)
+- Twitter/X: [@joefaron](https://x.com/joefaron)
 
 ## Acknowledgments
 

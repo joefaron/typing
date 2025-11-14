@@ -299,10 +299,24 @@ const App = {
     },
 
 
+    // Helper function to encode results as URL-safe base64
+    encodeResultsUrl(results) {
+        try {
+            var jsonStr = JSON.stringify(results);
+            var base64 = btoa(jsonStr);
+            // Make URL-safe: replace + with -, / with _, remove padding =
+            var urlSafe = base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+            return 'https://typing.kyd.net/r?d=' + urlSafe;
+        } catch (e) {
+            console.error('Error encoding results:', e);
+            return 'https://typing.kyd.net/r?ref-detail-here';
+        }
+    },
+
     shareToPlatform(platform) {
         const shareText = this.currentShareText || '';
         const shareTitle = this.currentShareTitle || 'Typing Speed Test Results';
-        const shareUrl = 'https://typing.kyd.net/r?ref-detail-here';
+        const shareUrl = this.currentShareUrl || 'https://typing.kyd.net/r?ref-detail-here';
         const encodedText = encodeURIComponent(shareText);
         const encodedUrl = encodeURIComponent(shareUrl);
         
