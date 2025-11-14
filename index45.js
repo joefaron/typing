@@ -12,6 +12,7 @@ const App = {
     levelData: null, // Will store level metadata
 
     init() {
+        console.log('App.init() called');
         this.loadLevelData();
         this.loadLevel();
         this.setupEventListeners();
@@ -30,22 +31,39 @@ const App = {
     },
 
     async loadLevel(levelNum) {
+        console.log('loadLevel() called with levelNum:', levelNum);
         if (levelNum !== undefined) {
             this.currentLevel = levelNum;
         }
         
         if (!this.isLevelUnlocked(this.currentLevel)) {
-            JoeHelper.toast('Level is locked. Complete previous level with 80%+ accuracy to unlock.', 'error');
+            console.warn('Level', this.currentLevel, 'is locked');
+            if (typeof JoeHelper !== 'undefined' && JoeHelper.toast) {
+                JoeHelper.toast('Level is locked. Complete previous level with 80%+ accuracy to unlock.', 'error');
+            }
             return;
         }
         
         try {
-            const response = await fetch(`index45-level${this.currentLevel}.json`);
+            const timestamp = Date.now();
+            const url = `index45-level${this.currentLevel}.json?t=${timestamp}`;
+            console.log('Fetching level from:', url);
+            const response = await fetch(url);
+            console.log('Response status:', response.status);
+            if (!response.ok) {
+                throw new Error('Failed to fetch: ' + response.status);
+            }
             const data = await response.json();
+            console.log('Level data loaded:', data);
             this.currentText = data.text;
             this.renderText();
         } catch (e) {
-            JoeHelper.toast('Failed to load level', 'error');
+            console.error('Error loading level:', e);
+            if (typeof JoeHelper !== 'undefined' && JoeHelper.toast) {
+                JoeHelper.toast('Failed to load level', 'error');
+            } else {
+                console.error('JoeHelper not available for toast notification');
+            }
         }
     },
 
@@ -380,10 +398,22 @@ const App = {
 
     // Level selection and unlock functions
     isLevelUnlocked(level) {
-        if (level === 1) return true; // First level always unlocked
+        console.log('isLevelUnlocked called for level:', level);
+        if (level === 1) {
+            console.log('Level 1 is always unlocked');
+            return true; // First level always unlocked
+        }
+        
+        if (typeof JoeHelper === 'undefined' || !JoeHelper.getItem) {
+            console.error('JoeHelper not available in isLevelUnlocked');
+            return false;
+        }
         
         const unlocked = JSON.parse(JoeHelper.getItem('unlockedLevels') || '[]');
-        return unlocked.indexOf(level) !== -1;
+        console.log('Unlocked levels:', unlocked);
+        const isUnlocked = unlocked.indexOf(level) !== -1;
+        console.log('Level', level, 'unlocked:', isUnlocked);
+        return isUnlocked;
     },
 
     unlockLevel(level) {
@@ -583,5 +613,28 @@ const App = {
 
 };
 
-document.addEventListener('DOMContentLoaded', () => App.init());
+function initializeApp() {
+    console.log('Initializing App...');
+    console.log('JoeHelper available:', typeof JoeHelper !== 'undefined');
+    console.log('Document ready state:', document.readyState);
+    
+    // Wait for JoeHelper if not available yet
+    if (typeof JoeHelper === 'undefined') {
+        console.log('Waiting for JoeHelper to load...');
+        setTimeout(initializeApp, 50);
+        return;
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOMContentLoaded fired, initializing App');
+            App.init();
+        });
+    } else {
+        console.log('DOM already loaded, initializing App immediately');
+        App.init();
+    }
+}
+
+initializeApp();
 

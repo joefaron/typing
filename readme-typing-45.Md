@@ -1,11 +1,12 @@
 # Typing Speed Test v45 - Technical Reference
 
 ## Quick Start
-- **Entry Point**: `index.php` (PHP 5.6 compatible)
+- **Entry Point**: `index.html`
 - **Core Logic**: `index45.js` (App object)
 - **Levels**: `index45-level{1-5}.json`
 - **Styling**: `index45.css`
 - **External Dep**: `joe-helper-v1.js` (localStorage wrapper, toast notifications)
+- **Live Demo**: [typing.kyd.net](https://typing.kyd.net)
 
 ---
 
@@ -361,7 +362,7 @@ if (Test-Path $file) {
 
 ```
 typing/
-├── index.php              # HTML entry point
+├── index.html            # HTML entry point
 ├── index45.js            # Core App logic
 ├── index45.css           # Styles
 ├── index45-level1.json   # Level 1 text

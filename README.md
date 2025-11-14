@@ -19,29 +19,20 @@ A free, open-source typing speed test application to measure your WPM (words per
 ## Quick Start
 
 1. Clone or download this repository
-2. Place files in your web server directory (PHP 5.6+ compatible)
-3. Open `index.php` in your browser
+2. Place files in your web server directory
+3. Open `index.html` in your browser
 4. Start typing!
+
+**See it live at [typing.kyd.net](https://typing.kyd.net)**
 
 ## Requirements
 
-- PHP 5.6 or higher (for cache busting)
 - Modern web browser with JavaScript enabled
-- Web server (Apache, Nginx, or PHP built-in server)
+- Web server (Apache, Nginx, or any static file server)
 
 ## Installation
 
-### Using PHP Built-in Server
-
-```bash
-php -S localhost:8000
-```
-
-Then open `http://localhost:8000` in your browser.
-
-### Using Apache/Nginx
-
-Simply place the files in your web root directory and access via your domain.
+Simply place the files in your web root directory and access via your domain or open `index.html` directly in your browser.
 
 ## Usage
 
@@ -56,7 +47,7 @@ Simply place the files in your web root directory and access via your domain.
 
 ```
 typing/
-├── index.php              # Main HTML entry point
+├── index.html            # Main HTML entry point
 ├── index45.js            # Core application logic
 ├── index45.css           # Styles and themes
 ├── index45-level1.json   # Level 1 text content
@@ -115,10 +106,11 @@ The goal is to show others that you don't need expensive AI tools or extensive c
 **Tech Stack:**
 - Cursor AI (Auto mode) - Primary development tool
 - Vanilla JavaScript - No frameworks required
-- PHP 5.6+ - Simple server-side cache busting
 - Modern CSS - Custom styling with CSS variables
 
 If you're interested in AI-assisted development, this project serves as a real-world example of what you can accomplish with accessible AI coding tools.
+
+**Want to see how it started?** Check out the [Initial Development Prompts](INITIAL-PROMPTS.md) to see the first three prompts that kicked off this project. The initial planning was done with Claude 4.5, and all subsequent development was completed using Cursor Auto mode.
 
 ## Author
 
@@ -128,12 +120,15 @@ If you're interested in AI-assisted development, this project serves as a real-w
 
 ## Acknowledgments
 
-- Built with vanilla JavaScript (no frameworks required)
+- Built with [vanilla JavaScript](https://javascript.tm) (no frameworks required)
 - Uses [Lucide Icons](https://lucide.dev/) for beautiful icons
 - Inspired by the need for a simple, free typing test tool
 - Developed with [Cursor AI](https://cursor.sh) to showcase AI-assisted coding capabilities
+- Part of the [KYD Labs](https://labs.kyd.net) showcase - a collection of AI-coded projects
 
 ---
 
 Made with ❤️ for the typing community
+
+*Fun fact: It's often much faster to use speech-to-text for typing than actually typing. We're at a philosophical point where even keyboarding in schools may go by the wayside - you can literally "vibe code" an entire app like this primarily with speech-to-text and just knowing how to code. The irony of building a typing test app while primarily using voice input is not lost on us.*
 

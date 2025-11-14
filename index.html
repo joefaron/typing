@@ -94,7 +94,17 @@
     }
     </script>
     
-    <link rel="stylesheet" href="index45.css?t=<?php echo time()?>">
+    <!-- Cache busting for CSS and JS -->
+    <script>
+        (function() {
+            var timestamp = Date.now();
+            var cssLink = document.createElement('link');
+            cssLink.rel = 'stylesheet';
+            cssLink.href = 'index45.css?t=' + timestamp;
+            document.head.appendChild(cssLink);
+        })();
+    </script>
+    
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://beta.fishwrangler.com/_ai/joe-helper-v1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.4.2/qrcode.min.js"></script>
@@ -244,9 +254,26 @@
         </a>
     </footer>
 
-    <script src="index45.js?t=<?php echo time()?>"></script>
     <script>
-        lucide.createIcons();
+        (function() {
+            var timestamp = Date.now();
+            var jsScript = document.createElement('script');
+            jsScript.src = 'index45.js?t=' + timestamp;
+            jsScript.onload = function() {
+                console.log('index45.js loaded successfully');
+            };
+            jsScript.onerror = function() {
+                console.error('Failed to load index45.js');
+            };
+            document.body.appendChild(jsScript);
+        })();
+    </script>
+    <script>
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        } else {
+            console.warn('Lucide not loaded yet');
+        }
     </script>
 </body>
 </html>
