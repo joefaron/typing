@@ -235,20 +235,23 @@ body {
     margin-bottom: 10px;
 }
 
+.history h2,
 .history h3 {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     margin: 0;
-    color: var(--text-secondary);
-    font-size: 1rem;
-    text-transform: uppercase;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
     letter-spacing: 0.5px;
 }
 
+.history h2 i,
 .history h3 i {
-    width: 18px;
-    height: 18px;
+    width: 24px;
+    height: 24px;
+    color: var(--accent);
 }
 
 .btn-small {
@@ -273,6 +276,17 @@ body {
     font-size: 0.875rem;
     color: var(--text-secondary);
     line-height: 1.5;
+}
+
+.history-tips a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.history-tips a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
 }
 
 .history-empty {
@@ -300,6 +314,51 @@ body {
 .history-item .wpm-badge {
     color: var(--accent);
     font-weight: 600;
+}
+
+.history-item .accuracy-text {
+    color: var(--text-secondary);
+    margin-left: 15px;
+}
+
+/* Results Display Page */
+.results-display {
+    margin-top: 20px;
+}
+
+.results-display .history {
+    margin-top: 0;
+}
+
+.results-display .history-header {
+    margin-bottom: 15px;
+}
+
+.results-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.results-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.results-actions .btn {
+    text-decoration: none;
+    display: inline-flex;
+}
+
+.error-message {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--error);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: var(--error);
+    text-align: center;
+    font-size: 0.95rem;
 }
 
 .toast-container {
@@ -362,6 +421,10 @@ body {
 .footer-link i {
     width: 18px;
     height: 18px;
+}
+
+.footer-link + .footer-link {
+    margin-left: 30px;
 }
 
 /* Level Selection Modal */
@@ -692,6 +755,32 @@ body {
         padding: 20px;
     }
     
+    .controls {
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start;
+        padding-bottom: 5px;
+    }
+    
+    .controls::-webkit-scrollbar {
+        height: 4px;
+    }
+    
+    .controls::-webkit-scrollbar-track {
+        background: var(--bg-tertiary);
+        border-radius: 2px;
+    }
+    
+    .controls::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 2px;
+    }
+    
+    .controls .btn {
+        flex-shrink: 0;
+    }
+    
     .modal-content {
         width: 95%;
         max-height: 90vh;
@@ -708,6 +797,32 @@ body {
     .share-btn {
         padding: 12px 16px;
         font-size: 0.9rem;
+    }
+    
+    .history h2,
+    .history h3 {
+        font-size: 1.25rem;
+    }
+    
+    .history h2 i,
+    .history h3 i {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .history-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .history-item .accuracy-text {
+        margin-left: 0;
+    }
+    
+    .results-actions .btn {
+        width: 100%;
+        justify-content: center;
     }
 }
 

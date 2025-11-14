@@ -2,6 +2,8 @@
 
 A free, open-source typing speed test application to measure your WPM (words per minute) and typing accuracy. Practice typing with 5 difficulty levels and track your progress over time.
 
+![Typing Speed Test](https://typing.kyd.net/twitter-card_1200x675.webp)
+
 ![Typing Speed Test](https://img.shields.io/badge/version-45-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 

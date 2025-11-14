@@ -638,6 +638,20 @@ const App = {
 };
 
 function initializeApp() {
+    // Check if we're on the results page - don't initialize typing test
+    function getUrlParameter(name) {
+        var regex = new RegExp('[\\?&]' + name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]') + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+    var dataParam = getUrlParameter('d');
+    var isResultsPage = (window.location.pathname.indexOf('/r') !== -1 || dataParam !== '');
+    
+    if (isResultsPage && dataParam) {
+        console.log('Results page detected, skipping typing test initialization');
+        return;
+    }
+    
     console.log('Initializing App...');
     console.log('JoeHelper available:', typeof JoeHelper !== 'undefined');
     console.log('Document ready state:', document.readyState);
@@ -650,7 +664,7 @@ function initializeApp() {
     }
     
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', function() {
             console.log('DOMContentLoaded fired, initializing App');
             App.init();
         });

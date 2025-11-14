@@ -22,7 +22,8 @@
     <meta property="og:url" content="https://typing.kyd.net/">
     <meta property="og:title" content="Typing Speed Test - Free Online Typing Test & WPM Calculator">
     <meta property="og:description" content="Test your typing speed and accuracy with our free online typing test. Calculate your WPM, track your progress, and improve your typing skills.">
-    <meta property="og:image" content="https://typing.kyd.net/og-image.jpg">
+    <meta property="og:image" content="https://typing.kyd.net/fb-card_1200x630.webp">
+    <meta property="og:image:type" content="image/webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Typing Speed Test - Free Online Typing Practice">
@@ -34,7 +35,7 @@
     <meta name="twitter:url" content="https://typing.kyd.net/">
     <meta name="twitter:title" content="Typing Speed Test - Free Online Typing Test & WPM Calculator">
     <meta name="twitter:description" content="Test your typing speed and accuracy with our free online typing test. Calculate your WPM, track your progress, and improve your typing skills.">
-    <meta name="twitter:image" content="https://typing.kyd.net/og-image.jpg">
+    <meta name="twitter:image" content="https://typing.kyd.net/twitter-card_1200x675.webp">
     <meta name="twitter:image:alt" content="Typing Speed Test - Free Online Typing Practice">
     
     <!-- Additional SEO Meta Tags -->
@@ -79,7 +80,7 @@
             "No registration required",
             "Free to use"
         ],
-        "screenshot": "https://typing.kyd.net/og-image.jpg",
+        "screenshot": "https://typing.kyd.net/fb-card_1200x630.webp",
         "softwareVersion": "45",
         "author": {
             "@type": "Organization",
@@ -134,53 +135,79 @@
         </header>
 
         <main role="main">
-            <section class="text-display" id="textDisplay" aria-label="Text to type"></section>
-
-            <textarea 
-                id="inputArea" 
-                placeholder="Start typing here..."
-                autocomplete="off"
-                autocorrect="off"
-                autocapitalize="off"
-                spellcheck="false"
-                aria-label="Typing input area"
-            ></textarea>
-
-            <nav class="controls" aria-label="Typing test controls">
-                <button id="selectLevelBtn" class="btn btn-secondary" aria-label="Select difficulty level">
-                    <i data-lucide="list" aria-hidden="true"></i>
-                    <span>Select Level</span>
-                </button>
-                <button id="resetBtn" class="btn" aria-label="Reset typing test">
-                    <i data-lucide="refresh-cw" aria-hidden="true"></i>
-                    <span>Reset</span>
-                </button>
-                <button id="shareBtn" class="btn btn-secondary" aria-label="Share your typing results">
-                    <i data-lucide="share-2" aria-hidden="true"></i>
-                    <span>Share Results</span>
-                </button>
-                <button id="clearStatsBtn" class="btn btn-secondary" aria-label="Clear all statistics">
-                    <i data-lucide="trash-2" aria-hidden="true"></i>
-                    <span>Clear Stats</span>
-                </button>
-            </nav>
-
-            <section class="history" aria-labelledby="history-heading">
-                <div class="history-header">
-                    <h2 id="history-heading">
-                        <i data-lucide="trophy" aria-hidden="true"></i>
-                        <span>Your Best Results</span>
-                    </h2>
-                    <button id="shareHistoryBtn" class="btn btn-secondary btn-small" aria-label="Share your typing history">
-                        <i data-lucide="share-2" aria-hidden="true"></i>
-                        <span>Share</span>
-                    </button>
+            <!-- Results Display (shown when /r route with d parameter) -->
+            <section class="results-display" id="resultsDisplay" aria-label="Shared typing results" style="display: none;">
+                <div class="history">
+                    <div class="history-header">
+                        <h2 id="results-heading">
+                            <i data-lucide="share-2" aria-hidden="true"></i>
+                            <span>Shared Typing Results</span>
+                        </h2>
+                    </div>
+                    <div class="history-tips">
+                        <p>These results were shared via a link. <a href="https://typing.kyd.net">Try the typing test</a> to see your own results.</p>
+                    </div>
+                    <div id="errorMessage" class="error-message" style="display: none;"></div>
+                    <div id="resultsContent" class="results-content"></div>
                 </div>
-                <div class="history-tips">
-                    <p>Complete a typing test to see your results here. Your top 5 scores are saved automatically.</p>
+                <div class="results-actions">
+                    <a href="https://typing.kyd.net" class="btn btn-primary">
+                        <i data-lucide="arrow-left" aria-hidden="true"></i>
+                        <span>Try the Typing Test</span>
+                    </a>
                 </div>
-                <div id="historyList" role="list" aria-label="Top 5 typing test results"></div>
             </section>
+
+            <!-- Main Typing Test (hidden when showing results) -->
+            <div id="typingTest">
+                <section class="text-display" id="textDisplay" aria-label="Text to type"></section>
+
+                <textarea 
+                    id="inputArea" 
+                    placeholder="Start typing here..."
+                    autocomplete="off"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    spellcheck="false"
+                    aria-label="Typing input area"
+                ></textarea>
+
+                <nav class="controls" aria-label="Typing test controls">
+                    <button id="selectLevelBtn" class="btn btn-secondary" aria-label="Select difficulty level">
+                        <i data-lucide="list" aria-hidden="true"></i>
+                        <span>Select Level</span>
+                    </button>
+                    <button id="resetBtn" class="btn" aria-label="Reset typing test">
+                        <i data-lucide="refresh-cw" aria-hidden="true"></i>
+                        <span>Reset</span>
+                    </button>
+                    <button id="shareBtn" class="btn btn-secondary" aria-label="Share your typing results">
+                        <i data-lucide="share-2" aria-hidden="true"></i>
+                        <span>Share Results</span>
+                    </button>
+                    <button id="clearStatsBtn" class="btn btn-secondary" aria-label="Clear all statistics">
+                        <i data-lucide="trash-2" aria-hidden="true"></i>
+                        <span>Clear Stats</span>
+                    </button>
+                </nav>
+
+                <section class="history" aria-labelledby="history-heading">
+                    <div class="history-header">
+                        <h2 id="history-heading">
+                            <i data-lucide="trophy" aria-hidden="true"></i>
+                            <span>Your Best Results</span>
+                        </h2>
+                        <button id="shareHistoryBtn" class="btn btn-secondary btn-small" aria-label="Share your typing history">
+                            <i data-lucide="share-2" aria-hidden="true"></i>
+                            <span>Share</span>
+                        </button>
+                    </div>
+                    <div class="history-tips">
+                        <p>Complete a typing test to see your results here. Your top 5 scores are saved automatically.</p>
+                    </div>
+                    <div id="historyList" role="list" aria-label="Top 5 typing test results"></div>
+                </section>
+            </div>
         </main>
     </div>
 
@@ -274,6 +301,67 @@
         } else {
             console.warn('Lucide not loaded yet');
         }
+
+        // Check if we're on the /r route with results data
+        (function() {
+            function decodeResultsUrl(base64Str) {
+                try {
+                    var base64 = base64Str.replace(/-/g, '+').replace(/_/g, '/');
+                    while (base64.length % 4) base64 += '=';
+                    return JSON.parse(atob(base64));
+                } catch (e) {
+                    console.error('Error decoding results:', e);
+                    return null;
+                }
+            }
+
+            function getUrlParameter(name) {
+                var regex = new RegExp('[\\?&]' + name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]') + '=([^&#]*)');
+                var results = regex.exec(location.search);
+                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            }
+
+            var dataParam = getUrlParameter('d');
+            var isResultsPage = (window.location.pathname.indexOf('/r') !== -1 || dataParam !== '');
+
+            if (isResultsPage && dataParam) {
+                var typingTest = document.getElementById('typingTest');
+                var resultsDisplay = document.getElementById('resultsDisplay');
+                var stats = document.querySelector('.stats');
+                var resultsContent = document.getElementById('resultsContent');
+                var errorMessage = document.getElementById('errorMessage');
+                
+                if (typingTest) typingTest.style.display = 'none';
+                if (stats) stats.style.display = 'none';
+                if (resultsDisplay) resultsDisplay.style.display = 'block';
+
+                var results = decodeResultsUrl(dataParam);
+                
+                if (!results || !Array.isArray(results) || results.length === 0) {
+                    if (errorMessage) {
+                        errorMessage.style.display = 'block';
+                        errorMessage.textContent = 'Invalid or missing results data.';
+                    }
+                    if (resultsContent) resultsContent.style.display = 'none';
+                } else {
+                    if (errorMessage) errorMessage.style.display = 'none';
+                    if (resultsContent) {
+                        resultsContent.style.display = 'block';
+                        resultsContent.innerHTML = results.map(function(result, i) {
+                            return '<div class="history-item">' +
+                                '<span>#' + (i + 1) + ' Level ' + result.level + '</span>' +
+                                '<span><span class="wpm-badge">' + result.wpm + ' WPM</span>' +
+                                '<span class="accuracy-text">' + result.accuracy + '% accuracy</span></span>' +
+                                '</div>';
+                        }).join('');
+                    }
+                }
+
+                if (typeof lucide !== 'undefined') {
+                    setTimeout(function() { lucide.createIcons(); }, 100);
+                }
+            }
+        })();
     </script>
 </body>
 </html>
