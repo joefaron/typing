@@ -539,6 +539,7 @@ const App = {
         let shareContent = '';
         let shareTitle = '';
         let shareUrl = 'https://typing.kyd.net/r?ref-detail-here';
+        let resultsToEncode = [];
         
         if (type === 'history') {
             if (results.length === 0) {
@@ -546,18 +547,26 @@ const App = {
                 return;
             }
             const topResults = results.slice(0, 5);
+            resultsToEncode = topResults.map(function(r) {
+                return { level: r.level, wpm: r.wpm, accuracy: r.accuracy };
+            });
+            shareUrl = this.encodeResultsUrl(resultsToEncode);
             shareContent = 'My Top Typing Speed Results:\n\n';
             topResults.forEach(function(result, i) {
                 shareContent += `#${i + 1} Level ${result.level}: ${result.wpm} WPM, ${result.accuracy}% accuracy\n`;
             });
-            shareContent += '\nTry the typing test at https://typing.kyd.net/r?ref-detail-here';
+            shareContent += '\nTry the typing test at ' + shareUrl;
             shareTitle = 'My Typing Speed Test Results';
         } else if (type === 'result' && this.lastResult) {
-            shareContent = `I just completed a typing test: ${this.lastResult.wpm} WPM with ${this.lastResult.accuracy}% accuracy on Level ${this.lastResult.level}! Try it at https://typing.kyd.net/r?ref-detail-here`;
+            resultsToEncode = [{ level: this.lastResult.level, wpm: this.lastResult.wpm, accuracy: this.lastResult.accuracy }];
+            shareUrl = this.encodeResultsUrl(resultsToEncode);
+            shareContent = `I just completed a typing test: ${this.lastResult.wpm} WPM with ${this.lastResult.accuracy}% accuracy on Level ${this.lastResult.level}! Try it at ${shareUrl}`;
             shareTitle = 'Typing Speed Test Results';
         } else if (results.length > 0) {
             const best = results[0];
-            shareContent = `My best typing speed: ${best.wpm} WPM with ${best.accuracy}% accuracy on Level ${best.level}! Try it at https://typing.kyd.net/r?ref-detail-here`;
+            resultsToEncode = [{ level: best.level, wpm: best.wpm, accuracy: best.accuracy }];
+            shareUrl = this.encodeResultsUrl(resultsToEncode);
+            shareContent = `My best typing speed: ${best.wpm} WPM with ${best.accuracy}% accuracy on Level ${best.level}! Try it at ${shareUrl}`;
             shareTitle = 'My Best Typing Speed';
         } else {
             JoeHelper.toast('No results to share yet', 'error');
@@ -567,6 +576,7 @@ const App = {
         // Store share data for shareToPlatform function
         this.currentShareText = shareContent;
         this.currentShareTitle = shareTitle;
+        this.currentShareUrl = shareUrl;
         
         shareText.textContent = shareContent;
         
